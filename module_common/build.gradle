@@ -1,0 +1,84 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
+
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    //multiDex
+    api rootProject.ext.dependencies["multiDex"]
+    //support
+    api rootProject.ext.dependencies["appcompat-v7"]
+    api rootProject.ext.dependencies["support-v4"]
+    api rootProject.ext.dependencies["cardview"]
+    api rootProject.ext.dependencies["design"]
+    api rootProject.ext.dependencies["recyclerview"]
+    //http
+    api rootProject.ext.dependencies["retrofit2"]
+    api rootProject.ext.dependencies["converter-scalars"]
+    api rootProject.ext.dependencies["converter-gson"]
+    api rootProject.ext.dependencies["adapter-rxjava2"]
+    api rootProject.ext.dependencies["rxlifecycle2"]
+    api rootProject.ext.dependencies["rxlifecomponents"]
+    //dagger2
+    api rootProject.ext.dependencies["dagger"]
+    //rxJava
+    api rootProject.ext.dependencies["rxjava"]
+    api rootProject.ext.dependencies["rxandroid"]
+    api rootProject.ext.dependencies["rxbinding2"]
+    api rootProject.ext.dependencies["rxpermissions"]
+    //ui
+    api rootProject.ext.dependencies["constraint-layout"]
+    api rootProject.ext.dependencies["butterknife"]
+    api rootProject.ext.dependencies["BaseAdapterHelper"]
+    api rootProject.ext.dependencies["glide"]
+    api rootProject.ext.dependencies["banner"]
+    api rootProject.ext.dependencies["circleimageview"]
+    api rootProject.ext.dependencies["utilcode"]
+//    api rootProject.ext.dependencies["agentweb"]
+    api rootProject.ext.dependencies["flowlayout"]
+    api rootProject.ext.dependencies["fragmentation"]
+    //router
+    api rootProject.ext.dependencies["arouter-api"]
+    //db
+    api rootProject.ext.dependencies["dbflow-core"]
+    api rootProject.ext.dependencies["dbflow"]
+    api rootProject.ext.dependencies["dbflow-sqlcipher"]
+    //annotationProcessor
+    annotationProcessor rootProject.ext.dependencies["dbflow-processor"]
+    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
+    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+}
+repositories {
+    mavenCentral()
+}
