@@ -4,6 +4,7 @@ import android.support.annotation.Keep;
 import android.view.View;
 
 import com.wyman.library_common.base.BaseFragment;
+import com.wyman.library_common.base.BasePresenter;
 import com.wyman.module_product.R;
 
 
@@ -26,9 +27,10 @@ public class InvestFragment extends BaseFragment {
     }
 
     @Override
-    protected void initInjector() {
-
+    protected BasePresenter createPresenter() {
+        return null;
     }
+
 
 
     public static InvestFragment newInstance() {

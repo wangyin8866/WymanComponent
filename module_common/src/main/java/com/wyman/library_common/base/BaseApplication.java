@@ -5,9 +5,6 @@ import android.content.Context;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.wyman.library_common.BuildConfig;
-import com.wyman.library_common.di.component.ApplicationComponent;
-import com.wyman.library_common.di.component.DaggerApplicationComponent;
-import com.wyman.library_common.di.module.ApplicationModule;
 import com.wyman.library_common.utils.LogUtils;
 import com.wyman.library_common.utils.Utils;
 
@@ -24,13 +21,11 @@ import me.yokeyword.fragmentation.Fragmentation;
  */
 public class BaseApplication extends Application {
     private static BaseApplication mInstance;
-    private ApplicationComponent mApplicationComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
         mInstance = this;
-        initApplicationComponent();
         Fragmentation.builder().stackViewMode(Fragmentation.BUBBLE).debug(BuildConfig.DEBUG).install();
 
         initARouter();
@@ -67,15 +62,6 @@ public class BaseApplication extends Application {
         ARouter.init(this); // 尽可能早，推荐在Application中初始化
     }
 
-    private void initApplicationComponent() {
-        mApplicationComponent = DaggerApplicationComponent.builder()
-                .applicationModule(new ApplicationModule(this))
-                .build();
-    }
-
-    public ApplicationComponent getApplicationComponent() {
-        return mApplicationComponent;
-    }
 
     public static Context getAppContext() {
         return mInstance.getApplicationContext();

@@ -19,14 +19,8 @@ import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 import com.wyman.library_common.config.Constant;
 import com.wyman.library_common.config.LoadType;
-import com.wyman.library_common.di.component.DaggerFragmentComponent;
-import com.wyman.library_common.di.component.FragmentComponent;
-import com.wyman.library_common.di.module.FragmentModule;
-import com.wyman.library_common.di.module.PresenterModule;
 
 import java.util.List;
-
-import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -42,9 +36,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
  */
 
 public abstract class BaseFragment<T extends BasePresenter<V>, V extends BaseView> extends RxFragment implements ISupportFragment, BaseView {
-    @Inject
     protected T mPresenter;
-    protected FragmentComponent mFragmentComponent;
     protected Context mContext;
     private static final String STATE_SAVE_IS_HIDDEN = "STATE_SAVE_IS_HIDDEN";
     private View mRootView;
@@ -54,12 +46,11 @@ public abstract class BaseFragment<T extends BasePresenter<V>, V extends BaseVie
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mDelegate.onCreate(savedInstanceState);
-        initFragmentComponent();
         ARouter.getInstance().inject(this);
         mContext = mDelegate.getActivity();
-        initInjector();
 
 
+        mPresenter = createPresenter();
         if (mPresenter != null) {
             mPresenter.attachView((V) this);
         }
@@ -123,19 +114,8 @@ public abstract class BaseFragment<T extends BasePresenter<V>, V extends BaseVie
 
     protected abstract int getLayoutId();
 
-    protected abstract void initInjector();
+    protected abstract T createPresenter();
 
-    /**
-     * 初始化FragmentComponent
-     */
-    private void initFragmentComponent() {
-        mFragmentComponent = DaggerFragmentComponent.builder()
-                .applicationComponent(((BaseApplication) getActivity().getApplication()).getApplicationComponent())
-                .fragmentModule(new FragmentModule(this))
-                .presenterModule(new PresenterModule())
-                .build();
-
-    }
 
     @Override
     public void showLoading() {

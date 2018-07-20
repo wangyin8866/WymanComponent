@@ -1,6 +1,5 @@
 package com.wyman.module_main;
 
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,12 +9,12 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.ToastUtils;
 import com.wyman.library_common.base.BaseActivity;
+import com.wyman.library_common.base.BasePresenter;
 import com.wyman.library_common.base.ClassUtils;
 import com.wyman.library_common.base.IViewDelegate;
 import com.wyman.library_common.utils.ToastAlone;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -59,7 +58,8 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected void initInjector() {
+    protected BasePresenter createPresenter() {
+        return null;
     }
 
 
@@ -73,7 +73,6 @@ public class MainActivity extends BaseActivity {
             mFragments.add(1, getProductFragment());
             mFragments.add(2, getAccountFragment());
             mFragments.add(3, getHomeFragment());
-            Log.e("mFragments", Arrays.asList(mFragments).toString());
             loadMultipleRootFragment(R.id.layout_fragment, currentPage,
                     mFragments.get(0),
                     mFragments.get(1),
@@ -88,9 +87,10 @@ public class MainActivity extends BaseActivity {
             mFragments.add(2, findFragment(getAccountFragment().getClass()));
             mFragments.add(3, homeFragment);
         }
-
+        setTabSelection(currentPage);
 
     }
+
     public void setTabSelection(int currentPage) {
         //选中前清除状态
         restView();
@@ -113,6 +113,7 @@ public class MainActivity extends BaseActivity {
                 break;
         }
     }
+
     /**
      * 重置所有状态
      */
@@ -127,6 +128,7 @@ public class MainActivity extends BaseActivity {
         idTabTv04.setTextColor(getResources().getColor(R.color.tv_navigate));
 
     }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -190,15 +192,19 @@ public class MainActivity extends BaseActivity {
             ToastUtils.showShort("aaa");
             showHideFragment(mFragments.get(0), mFragments.get(currentPage));
             currentPage = 0;
+            setTabSelection(currentPage);
         } else if (i == R.id.id_tab_ll_02) {
             showHideFragment(mFragments.get(1), mFragments.get(currentPage));
             currentPage = 1;
+            setTabSelection(currentPage);
         } else if (i == R.id.id_tab_ll_03) {
             showHideFragment(mFragments.get(2), mFragments.get(currentPage));
             currentPage = 2;
+            setTabSelection(currentPage);
         } else if (i == R.id.id_tab_ll_04) {
             showHideFragment(mFragments.get(3), mFragments.get(currentPage));
             currentPage = 3;
+            setTabSelection(currentPage);
         }
     }
 }

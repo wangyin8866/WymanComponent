@@ -1,17 +1,19 @@
 package com.wyman.module_home.ui;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.wyman.library_common.base.BaseFragment;
+import com.wyman.library_common.base.BaseView;
+import com.wyman.library_common.utils.LogUtils;
 import com.wyman.module_home.R;
 import com.wyman.module_home.R2;
+import com.wyman.module_home.presenter.HomePresenter;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -20,20 +22,33 @@ import butterknife.Unbinder;
  * description : 测试悬浮窗
  */
 
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment<HomePresenter,BaseView>{
 
 
     @BindView(R2.id.text)
     TextView text;
     Unbinder unbinder;
+    @BindView(R2.id.home_btn_test)
+    Button homeBtnTest;
 
     @Override
     protected void initView(View view) {
+
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
+    }
+
+
+    @Override
+    public void onSupportVisible() {
+        super.onSupportVisible();
+        LogUtils.e("onSupportVisible","onSupportVisible");
+        mPresenter.fetch();
     }
 
     @Override
@@ -48,10 +63,9 @@ public class HomeFragment extends BaseFragment {
     }
 
     @Override
-    protected void initInjector() {
-
+    protected HomePresenter createPresenter() {
+        return new HomePresenter(mContext);
     }
-
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
@@ -59,16 +73,19 @@ public class HomeFragment extends BaseFragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @OnClick(R2.id.home_btn_test)
+    public void onViewClicked() {
+        ARouter.getInstance().build("/account/ARouterTestActivity").withString("name","wyman").navigation();
+    }
+
+    @Override
+    public void showSuccess(String message) {
+        super.showSuccess(message);
+
     }
 }

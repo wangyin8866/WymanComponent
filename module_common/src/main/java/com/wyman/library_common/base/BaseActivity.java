@@ -12,13 +12,8 @@ import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import com.wyman.library_common.config.Constant;
 import com.wyman.library_common.config.LoadType;
-import com.wyman.library_common.di.component.ActivityComponent;
-import com.wyman.library_common.di.component.DaggerActivityComponent;
-import com.wyman.library_common.di.module.ActivityModule;
 
 import java.util.List;
-
-import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -36,24 +31,21 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
  */
 
 public abstract class BaseActivity<T extends BasePresenter<V>, V extends BaseView> extends RxAppCompatActivity implements ISupportActivity, BaseView {
-    @Inject
     protected T mPresenter;
     protected Context mContext;
     private Unbinder unbinder;
-    protected ActivityComponent mActivityComponent;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mDelegate.onCreate(savedInstanceState);
-        initActivityComponent();
         int layoutId = getLayoutId();
 
         setContentView(layoutId);
-        initInjector();
         unbinder = ButterKnife.bind(this);
         mContext = this;
 
-
+        mPresenter = createPresenter();
         if (mPresenter != null) {
             mPresenter.attachView((V) this);
         }
@@ -76,17 +68,9 @@ public abstract class BaseActivity<T extends BasePresenter<V>, V extends BaseVie
     protected abstract void initView();
 
     protected abstract int getLayoutId();
-    protected abstract void initInjector();
 
-    /**
-     * 初始化ActivityComponent
-     */
-    private void initActivityComponent() {
-        mActivityComponent = DaggerActivityComponent.builder()
-                .applicationComponent(((BaseApplication) getApplication()).getApplicationComponent())
-                .activityModule(new ActivityModule(this))
-                .build();
-    }
+    protected abstract T createPresenter();
+
 
     @Override
     public void showSuccess(String message) {

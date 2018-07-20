@@ -19,7 +19,7 @@ import io.reactivex.schedulers.Schedulers;
 public  class BasePresenter<T extends BaseView> {
 
     private WeakReference<T> mVReference;
-    protected Context mContext;
+    public Context mContext;
 
     protected <T> void invoke(Observable<T> observable, Observer<T> observer) {
         observable.subscribeOn(Schedulers.io())

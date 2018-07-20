@@ -49,8 +49,7 @@ dependencies {
     api rootProject.ext.dependencies["adapter-rxjava2"]
     api rootProject.ext.dependencies["rxlifecycle2"]
     api rootProject.ext.dependencies["rxlifecomponents"]
-    //dagger2
-    api rootProject.ext.dependencies["dagger"]
+
     //rxJava
     api rootProject.ext.dependencies["rxjava"]
     api rootProject.ext.dependencies["rxandroid"]
@@ -77,7 +76,6 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies["dbflow-processor"]
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
-    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
 }
 repositories {
     mavenCentral()

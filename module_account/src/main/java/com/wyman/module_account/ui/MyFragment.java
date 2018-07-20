@@ -3,6 +3,7 @@ package com.wyman.module_account.ui;
 import android.view.View;
 
 import com.wyman.library_common.base.BaseFragment;
+import com.wyman.library_common.base.BasePresenter;
 import com.wyman.module_account.R;
 
 
@@ -25,8 +26,10 @@ public class MyFragment extends BaseFragment {
     }
 
     @Override
-    protected void initInjector() {
+    protected BasePresenter createPresenter() {
+        return null;
     }
+
 
 
     public static MyFragment newInstance() {

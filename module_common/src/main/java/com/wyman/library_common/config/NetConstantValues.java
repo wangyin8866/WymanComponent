@@ -7,6 +7,6 @@ package com.wyman.library_common.config;
  * 作者：User on 2016/11/23 21:19
  */
 public interface NetConstantValues {
-    String HOST_URL = "";
+    String HOST_URL = "http://wanandroid.com/";
 
 }
