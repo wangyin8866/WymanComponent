@@ -1,4 +1,4 @@
 # WymanComponent
-组件化开发+mvp+dagger+rxjava+retrofit
+组件化开发+mvp+arouter+rxjava+retrofit
 
 
