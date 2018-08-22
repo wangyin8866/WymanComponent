@@ -1,15 +1,14 @@
 apply plugin: 'com.android.library'
-
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    compileSdkVersion 27
 
 
 
     defaultConfig {
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
+        minSdkVersion 15
+        targetSdkVersion 27
+        versionCode 1
+        versionName '1.0'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
@@ -35,47 +34,52 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //multiDex
-    api rootProject.ext.dependencies["multiDex"]
+    api "com.android.support:multidex:1.0.3"
     //support
-    api rootProject.ext.dependencies["appcompat-v7"]
-    api rootProject.ext.dependencies["support-v4"]
-    api rootProject.ext.dependencies["cardview"]
-    api rootProject.ext.dependencies["design"]
-    api rootProject.ext.dependencies["recyclerview"]
+    api "com.android.support:appcompat-v7:27.1.1"
+    api "com.android.support:support-v4:27.1.1"
+    api "com.android.support:cardview-v7:27.1.1"
+    api "com.android.support:design:27.1.1"
+    api "com.android.support:recyclerview-v7:27.1.1"
     //http
-    api rootProject.ext.dependencies["retrofit2"]
-    api rootProject.ext.dependencies["converter-scalars"]
-    api rootProject.ext.dependencies["converter-gson"]
-    api rootProject.ext.dependencies["adapter-rxjava2"]
-    api rootProject.ext.dependencies["rxlifecycle2"]
-    api rootProject.ext.dependencies["rxlifecomponents"]
+    api "com.squareup.retrofit2:retrofit:2.4.0"
+    api "com.squareup.retrofit2:converter-scalars:2.4.0"
+    api "com.squareup.retrofit2:converter-gson:2.4.0"
+    api "com.squareup.retrofit2:adapter-rxjava2:2.4.0"
+
+    api "com.trello.rxlifecycle2:rxlifecycle:2.2.1"
+    api "com.trello.rxlifecycle2:rxlifecycle-components:2.2.1"
 
     //rxJava
-    api rootProject.ext.dependencies["rxjava"]
-    api rootProject.ext.dependencies["rxandroid"]
-    api rootProject.ext.dependencies["rxbinding2"]
-    api rootProject.ext.dependencies["rxpermissions"]
+    api "io.reactivex.rxjava2:rxjava:2.1.16"
+    api "io.reactivex.rxjava2:rxandroid:2.0.2"
+    api "com.jakewharton.rxbinding2:rxbinding:2.0.0"
+    api 'com.github.tbruyelle:rxpermissions:0.10.2'
+
     //ui
-    api rootProject.ext.dependencies["constraint-layout"]
-    api rootProject.ext.dependencies["butterknife"]
-    api rootProject.ext.dependencies["BaseAdapterHelper"]
-    api rootProject.ext.dependencies["glide"]
-    api rootProject.ext.dependencies["banner"]
-    api rootProject.ext.dependencies["circleimageview"]
-    api rootProject.ext.dependencies["utilcode"]
-//    api rootProject.ext.dependencies["agentweb"]
-    api rootProject.ext.dependencies["flowlayout"]
-    api rootProject.ext.dependencies["fragmentation"]
+    api "com.android.support.constraint:constraint-layout:1.1.2"
+    api "com.jakewharton:butterknife:8.8.1"
+    api "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.32"
+    api 'jp.wasabeef:glide-transformations:3.3.0'
+    // If you want to use the GPU Filters
+    api 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
+    api "com.youth.banner:banner:1.4.10"
+    api "de.hdodenhof:circleimageview:2.2.0"
+    api "com.blankj:utilcode:1.19.0"
+    api "com.just.agentweb:agentweb:4.0.2"
+    api "com.hyman:flowlayout-lib:1.1.2"
+    api "me.yokeyword:fragmentation:1.3.3"
     //router
-    api rootProject.ext.dependencies["arouter-api"]
+    api "com.alibaba:arouter-api:1.3.1"
     //db
-    api rootProject.ext.dependencies["dbflow-core"]
-    api rootProject.ext.dependencies["dbflow"]
-    api rootProject.ext.dependencies["dbflow-sqlcipher"]
+    api "com.github.Raizlabs.DBFlow:dbflow-core:4.2.4"
+    api "com.github.Raizlabs.DBFlow:dbflow:4.2.4"
+    api "com.github.Raizlabs.DBFlow:dbflow-sqlcipher:4.2.4"
     //annotationProcessor
-    annotationProcessor rootProject.ext.dependencies["dbflow-processor"]
-    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
-    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
+    annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:4.2.4"
+    annotationProcessor "com.alibaba:arouter-compiler:1.1.4"
+    annotationProcessor "com.jakewharton:butterknife-compiler:8.8.1"
+
 }
 repositories {
     mavenCentral()
