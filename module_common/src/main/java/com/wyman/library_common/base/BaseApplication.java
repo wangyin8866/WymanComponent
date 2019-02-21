@@ -12,7 +12,7 @@ import me.yokeyword.fragmentation.Fragmentation;
 
 /**
  * @author wyman
- * @date 2018/7/11
+ *  2018/7/11
  * description :
  * 要想使用BaseApplication，必须在组件中实现自己的Application，并且继承BaseApplication；
  * 组件中实现的Application必须在debug包中的AndroidManifest.xml中注册，否则无法使用；

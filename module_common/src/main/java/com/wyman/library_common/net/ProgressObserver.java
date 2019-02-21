@@ -12,7 +12,7 @@ import io.reactivex.disposables.Disposable;
 
 /**
  * @author wyman
- * @date 2018/4/12
+ *  2018/4/12
  * description :
  */
 

@@ -4,7 +4,8 @@ import android.content.Context;
 import android.widget.Toast;
 
 /**
- * 只会显示一个toast </br>
+ *
+ * 只会显示一个toast
  * 不会有延迟的toast
  *
  * @author pengjun

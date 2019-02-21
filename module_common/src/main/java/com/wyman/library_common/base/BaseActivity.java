@@ -26,7 +26,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 /**
  * @author wyman
- * @date 2018/4/12
+ * 2018/4/12
  * description :
  */
 
@@ -135,9 +135,8 @@ public abstract class BaseActivity<T extends BasePresenter<V>, V extends BaseVie
     /**
      * Set all fragments animation.
      * 构建Fragment转场动画
-     * <p/>
      * 如果是在Activity内实现,则构建的是Activity内所有Fragment的转场动画,
-     * 如果是在Fragment内实现,则构建的是该Fragment的转场动画,此时优先级 > Activity的onCreateFragmentAnimator()
+     * 如果是在Fragment内实现,则构建的是该Fragment的转场动画,此时优先级 大于 Activity的onCreateFragmentAnimator()
      *
      * @return FragmentAnimator对象
      */
@@ -166,10 +165,6 @@ public abstract class BaseActivity<T extends BasePresenter<V>, V extends BaseVie
     /**
      * 设置加载数据结果
      *
-     * @param baseQuickAdapter
-     * @param refreshLayout
-     * @param list
-     * @param loadType
      */
     protected void setLoadDataResult(BaseQuickAdapter baseQuickAdapter, SwipeRefreshLayout refreshLayout, List list, @LoadType.checker int loadType) {
         switch (loadType) {
@@ -208,11 +203,7 @@ public abstract class BaseActivity<T extends BasePresenter<V>, V extends BaseVie
         mDelegate.start(toFragment, launchMode);
     }
 
-    /**
-     * @see #popTo(Class, boolean)
-     * +
-     * @see #start(ISupportFragment)
-     */
+
     public void startWithPopTo(ISupportFragment toFragment, Class<?> targetFragmentClass, boolean includeTargetFragment) {
         mDelegate.startWithPopTo(toFragment, targetFragmentClass, includeTargetFragment);
     }

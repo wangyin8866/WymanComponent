@@ -12,7 +12,6 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author wyman
- * @date 2018/4/11
  * description :
  */
 

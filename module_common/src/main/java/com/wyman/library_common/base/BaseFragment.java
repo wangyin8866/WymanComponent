@@ -31,7 +31,6 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 /**
  * @author wyman
- * @date 2018/4/12
  * description :
  */
 
@@ -200,7 +199,7 @@ public abstract class BaseFragment<T extends BasePresenter<V>, V extends BaseVie
     /**
      * 构建Fragment转场动画
      * 如果是在Activity内实现,则构建的是Activity内所有Fragment的转场动画,
-     * 如果是在Fragment内实现,则构建的是该Fragment的转场动画,此时优先级 > Activity的onCreateFragmentAnimator()
+     * 如果是在Fragment内实现,则构建的是该Fragment的转场动画,此时优先级  Activity的onCreateFragmentAnimator()
      */
     @Override
     public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {

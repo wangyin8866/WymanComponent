@@ -4,7 +4,6 @@ import com.trello.rxlifecycle2.LifecycleTransformer;
 
 /**
  * @author wyman
- * @date 2018/4/12
  * description :
  */
 

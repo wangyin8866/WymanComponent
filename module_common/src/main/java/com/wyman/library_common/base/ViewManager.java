@@ -14,7 +14,7 @@ import me.yokeyword.fragmentation.ISupportFragment;
 /**
  * <p></p>
  *
- * @name ViewManager
+ *  ViewManager
  */
 @Keep
 public class ViewManager {

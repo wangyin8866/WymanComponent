@@ -8,7 +8,6 @@ import me.yokeyword.fragmentation.ISupportFragment;
 /**
  * <p>类说明</p>
  *
- * @name IFragmentDelegate
  */
 @Keep
 public interface IViewDelegate {
