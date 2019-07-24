@@ -69,7 +69,7 @@ dependencies {
 
 }
 ///** 以下开始是将Android Library上传到jcenter的相关配置**/
-
+//
 //apply plugin: 'com.github.dcendents.android-maven'
 //apply plugin: 'com.jfrog.bintray'
 //
@@ -83,7 +83,7 @@ dependencies {
 ////发布到JCenter上的项目名字，必须填写
 //def libName = "wymanComponent_common"
 //// 版本号，下次更新是只需要更改版本号即可
-//version = "1.0.3"
+//version = "1.0.4"
 ///**  上面配置后上传至jcenter后的编译路径是这样的： compile 'com.wyman.wangyin:swipemenuview:1.0'  **/
 //
 ////生成源文件
@@ -91,17 +91,17 @@ dependencies {
 //    from android.sourceSets.main.java.srcDirs
 //    classifier = 'sources'
 //}
-//生成文档
-task javadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    options.encoding "UTF-8"
-    options.charSet 'UTF-8'
-    options.author true
-    options.version true
-    options.links "https://github.com/wangyin8866/WymanComponent"
-    failOnError false
-}
+////生成文档
+//task javadoc(type: Javadoc) {
+//    source = android.sourceSets.main.java.srcDirs
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//    options.encoding "UTF-8"
+//    options.charSet 'UTF-8'
+//    options.author true
+//    options.version true
+//    options.links "https://github.com/wangyin8866/WymanComponent"
+//    failOnError false
+//}
 //
 ////文档打包成jar
 //task javadocJar(type: Jar, dependsOn: javadoc) {
@@ -169,12 +169,15 @@ task javadoc(type: Javadoc) {
 //        publish = true
 //    }
 //}
+/**
+ * 第二种方法
+ */
 apply plugin: 'com.novoda.bintray-release'
 publish {
     userOrg = 'wyman' //bintray账户下某个组织id
     groupId = 'com.wyman.component' //maven仓库下库的包名，一般为模块包名
     artifactId = 'component_common' //项目名称
-    publishVersion = '1.0.0' //版本号
+    publishVersion = '1.1.0' //版本号
     desc = 'custom chart for android' //项目介绍，可以不写
     website = 'https://github.com/wangyin8866/WymanComponent' //项目主页，可以不写
 }
